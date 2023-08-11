@@ -3,7 +3,6 @@ import Link from "next/link";
 import React,{useEffect} from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
-import { Router } from "next/router";
 import { toast } from "react-hot-toast";
 export default function SignupPage(){
     const router = useRouter();
@@ -17,12 +16,12 @@ export default function SignupPage(){
     const onSignup = async () => {
         try {
             setLoading(true);
-            const rep = await axios.post("/api/users/signup",user);
-            console.log("User signup successful!!!", rep.data);
+            const response = await axios.post("/api/users/signup",user);
+            console.log("User signup successful!!!", response.data);
             router.push("/login");
         } catch (error: any) {
             console.log("Signup failed!: " + error.message);
-            toast.error(error.message);
+            
         } finally {
             setLoading(false);
         }

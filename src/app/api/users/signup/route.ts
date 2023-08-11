@@ -13,6 +13,7 @@ export async function POST(request : NextRequest){
 
         //check if user is exist
         const user = await User.findOne({email});
+        
          if (user){
             return NextResponse.json({error:"User already exist!!"},
             {status:400})
@@ -21,15 +22,15 @@ export async function POST(request : NextRequest){
         //hash password
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(password, salt)
-
+        
         const newUser = new User({
             username,
             email,
             password: hashedPassword
         })
-
+        console.log("New USer = "+newUser);
         const savedUser = await newUser.save()
-        console.log(savedUser);
+        console.log("Saved User: ",savedUser);
 
 
          return NextResponse.json({Message:"User Created Successfully",
