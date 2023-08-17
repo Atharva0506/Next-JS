@@ -26,9 +26,13 @@ export default function ProfilePage(){
             <h1>Profile </h1>
             <hr />
             <p>Profile Page</p>
-            <h2>{data?"":""}</h2>
+            <h2>{data==="Null"?"Nothing":<Link href={`/profile/${data}`}></Link>}{data}</h2>
             <button onClick={logout}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Logout</button>
+
+            <button onClick={getUserDetails}  
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Get Use Details </button>
+
         </div>
     )
 }
